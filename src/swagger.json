@@ -1,0 +1,22 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "educationManagement Documentation",
+        "description": "Documentação do teste teórico",
+        "version": "1.0.0",
+        "contact": {
+            "email": "jvitormoreirad@hotmail.com"
+        }
+    },
+    "paths": {},
+    "definitions": {},
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
