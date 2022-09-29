@@ -11,7 +11,7 @@ class ListSchoolsController {
 
         const school = await listSchoolsUseCase.execute();
 
-        return response.status(201).json(school);
+        return response.status(200).json(school);
     }
 }
 
