@@ -7,12 +7,15 @@ import SwaggerUI from "swagger-ui-express";
 import { AppError } from "@shared/errors/AppError";
 
 import swaggerFile from "../../../swagger.json";
+import { router } from "./routes";
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/api-docs", SwaggerUI.serve, SwaggerUI.setup(swaggerFile));
+
+app.use(router);
 
 app.use(
     (

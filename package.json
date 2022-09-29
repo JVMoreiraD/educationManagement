@@ -6,8 +6,8 @@
     "scripts": {
         "dev": "ts-node-dev -r tsconfig-paths/register --poll  --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
         "start": "ts-node src/index.ts",
-        "prisma:migrate": "ts-node-dev prisma migrate dev",
-        "prisma:client": "ts-node-dev prisma studio"
+        "prisma:migrate": "prisma migrate dev",
+        "prisma:studio": "prisma studio"
     },
     "keywords": [],
     "author": "",
