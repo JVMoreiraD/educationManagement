@@ -85,6 +85,117 @@
                     }
                 }
             }
+        },
+        "/teacher": {
+            "post": {
+                "tags": [
+                    "teacher"
+                ],
+                "summary": "Cadastra um Professor",
+                "description": "Cadastra um professor em uma escola",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/postTeacher"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postTeacherResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/teacher/all": {
+            "get": {
+                "tags": [
+                    "teacher"
+                ],
+                "summary": "Listagem de todos os professores no sistema",
+                "description": "Faz a listagem dos professores cadastrados sem filtrar por escolas",
+                "responses": {
+                    "201": {
+                        "description": "listed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/getTeachersResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/teacher/{school_id}": {
+            "get": {
+                "tags": [
+                    "teacher"
+                ],
+                "parameters": [
+                    {
+                        "name": "school_id",
+                        "in": "path",
+                        "description": "id da escola",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Listagem de todos os professores de uma escola",
+                "description": "Faz a listagem dos professores cadastrados filtrando por escola",
+                "responses": {
+                    "201": {
+                        "description": "listed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/getTeachersResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/teacher/{id}": {
+            "delete": {
+                "tags": [
+                    "teacher"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id do professor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Deletar professor",
+                "description": "Apaga um professor cadastrado",
+                "responses": {
+                    "200": {
+                        "description": "deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Professor não existe"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -97,6 +208,25 @@
                 "address": {
                     "type": "string"
                 }
+            },
+            "example": {
+                "name": "Marista",
+                "address": "rua central perimetral"
+            }
+        },
+        "postTeacher": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "school_id": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "name": "Mario Professor",
+                "school_id": "id de uma escola"
             }
         },
         "responses": {
@@ -127,6 +257,51 @@
                         },
                         "address": {
                             "type": "string"
+                        }
+                    }
+                }
+            },
+            "postTeacherResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "school_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "getTeachersResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "school_id": {
+                            "type": "string"
+                        },
+                        "school": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 }
