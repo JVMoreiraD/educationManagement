@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
+
+import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
 
 import { CreateSchoolUseCase } from "./CreateSchoolUseCase";
 
@@ -7,7 +8,8 @@ class CreateSchoolController {
     async handle(request: Request, response: Response) {
         const { name, address } = request.body;
 
-        const createSchoolUseCase = container.resolve(CreateSchoolUseCase);
+        const schoolsRepository = new SchoolsRepository();
+        const createSchoolUseCase = new CreateSchoolUseCase(schoolsRepository);
 
         const school = await createSchoolUseCase.execute({ name, address });
 

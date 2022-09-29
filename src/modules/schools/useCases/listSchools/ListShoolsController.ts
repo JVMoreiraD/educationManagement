@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
+
+import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
 
 import { ListSchoolsUseCase } from "./ListSchoolsUseCase";
 
 class ListSchoolsController {
     async handle(request: Request, response: Response) {
-        const listSchoolsUseCase = container.resolve(ListSchoolsUseCase);
+        const schoolsRepository = new SchoolsRepository();
+        const listSchoolsUseCase = new ListSchoolsUseCase(schoolsRepository);
 
         const school = await listSchoolsUseCase.execute();
 

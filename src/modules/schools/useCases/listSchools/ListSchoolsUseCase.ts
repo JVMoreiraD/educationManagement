@@ -1,13 +1,12 @@
 import { injectable } from "tsyringe";
 
-import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
+import { ISchoolsRepository } from "@modules/schools/repositories/ISchoolsRepository";
 
 @injectable()
 class ListSchoolsUseCase {
+    constructor(private schoolsRepository: ISchoolsRepository) {}
     async execute() {
-        const schoolsRepository = new SchoolsRepository();
-
-        const school = await schoolsRepository.listSchools();
+        const school = await this.schoolsRepository.listSchools();
 
         return school;
     }
