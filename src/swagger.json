@@ -114,15 +114,24 @@
                         }
                     }
                 }
-            }
-        },
-        "/teacher/all": {
+            },
             "get": {
                 "tags": [
                     "teacher"
                 ],
-                "summary": "Listagem de todos os professores no sistema",
-                "description": "Faz a listagem dos professores cadastrados sem filtrar por escolas",
+                "parameters": [
+                    {
+                        "name": "school_id",
+                        "in": "query",
+                        "description": "id da escola",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Listagem de todos os professores de uma escola",
+                "description": "Faz a listagem dos professores cadastrados filtrando por escola",
                 "responses": {
                     "201": {
                         "description": "listed",
@@ -137,24 +146,13 @@
                 }
             }
         },
-        "/teacher/{school_id}": {
+        "/teacher/all": {
             "get": {
                 "tags": [
                     "teacher"
                 ],
-                "parameters": [
-                    {
-                        "name": "school_id",
-                        "in": "path",
-                        "description": "id da escola",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "summary": "Listagem de todos os professores de uma escola",
-                "description": "Faz a listagem dos professores cadastrados filtrando por escola",
+                "summary": "Listagem de todos os professores no sistema",
+                "description": "Faz a listagem dos professores cadastrados sem filtrar por escolas",
                 "responses": {
                     "201": {
                         "description": "listed",
