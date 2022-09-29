@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
+import { SchoolsRepository } from "@modules/schools/repositories/prisma/SchoolsRepository";
 
 import { ListSchoolsUseCase } from "./ListSchoolsUseCase";
 

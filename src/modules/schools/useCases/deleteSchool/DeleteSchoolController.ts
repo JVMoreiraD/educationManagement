@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
+import { SchoolsRepository } from "@modules/schools/repositories/prisma/SchoolsRepository";
 
 import { DeleteSchoolUseCase } from "./DeleteSchoolUseCase";
 
@@ -13,7 +13,7 @@ class DeleteSchoolController {
 
         await deleteSchoolUseCase.execute(id);
 
-        return response.json({ message: "deleted with success" }).status(200);
+        return response.json({ message: "Deletado com sucesso" }).status(200);
     }
 }
 export { DeleteSchoolController };

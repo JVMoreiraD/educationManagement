@@ -1,8 +1,8 @@
 import { Schools } from "@prisma/client";
 import { prisma } from "@shared/infra/database/prismaClient";
 
-import { ICreateSchoolDTO } from "../dtos/ICreateSchoolsDTO";
-import { ISchoolsRepository } from "./ISchoolsRepository";
+import { ICreateSchoolDTO } from "../../dtos/ICreateSchoolsDTO";
+import { ISchoolsRepository } from "../ISchoolsRepository";
 
 class SchoolsRepository implements ISchoolsRepository {
     async findSchool(id: string): Promise<Schools> {
