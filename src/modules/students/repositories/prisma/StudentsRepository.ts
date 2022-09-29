@@ -5,6 +5,10 @@ import { prisma } from "@shared/infra/database/prismaClient";
 import { IStudentsRepository } from "../IStudentsRepository";
 
 class StudentsRepository implements IStudentsRepository {
+    async findStudentById(id: string): Promise<Students> {
+        const student = await prisma.students.findUnique({ where: { id } });
+        return student;
+    }
     async create({
         id,
         name,

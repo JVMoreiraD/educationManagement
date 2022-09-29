@@ -11,5 +11,6 @@ interface IStudentsRepository {
     }: ICreateStudentDTO): Promise<Students>;
     listStudentsBySchool(schools_id: string): Promise<Students[]>;
     deleteStudent(id: string): Promise<void>;
+    findStudentById(id: string): Promise<Students>;
 }
 export { IStudentsRepository };
