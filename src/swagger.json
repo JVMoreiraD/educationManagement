@@ -8,8 +8,131 @@
             "email": "jvitormoreirad@hotmail.com"
         }
     },
-    "paths": {},
-    "definitions": {},
+    "paths": {
+        "/school": {
+            "post": {
+                "tags": [
+                    "school"
+                ],
+                "summary": "Criar escolas",
+                "description": "Passar os parâmetros de nome e endereço é possível adicionar uma escola no banco",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/postSchools"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postSchoolsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "school"
+                ],
+                "summary": "Listagem de escolas",
+                "description": "Faz a listagem das escolas salvas no banco",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/getSchoolsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/school/{id}": {
+            "delete": {
+                "tags": [
+                    "school"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id da escola",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Deletar escola",
+                "description": "Apaga uma escola cadastrada",
+                "responses": {
+                    "200": {
+                        "description": "deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Escola não existe"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "postSchools": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                }
+            }
+        },
+        "responses": {
+            "postSchoolsResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "getSchoolsResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
     "components": {
         "securitySchemes": {
             "bearerAuth": {
