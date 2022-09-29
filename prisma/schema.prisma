@@ -11,9 +11,19 @@ datasource db {
 }
 
 model Schools {
-    id      String @id @default(uuid())
-    name    String
-    address String
+    id       String     @id @default(uuid())
+    name     String
+    address  String
+    Teachers Teachers[]
 
     @@map("schools")
+}
+
+model Teachers {
+    id        String  @id @default(uuid())
+    name      String
+    school    Schools @relation(fields: [school_id], references: [id])
+    school_id String
+
+    @@map("teachers")
 }
