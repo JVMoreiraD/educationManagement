@@ -1,7 +1,6 @@
 import { injectable } from "tsyringe";
 
 import { ISchoolsRepository } from "@modules/schools/repositories/ISchoolsRepository";
-import { SchoolsRepository } from "@modules/schools/repositories/SchoolsRepository";
 
 interface IRequest {
     name: string;
@@ -12,9 +11,7 @@ interface IRequest {
 class CreateSchoolUseCase {
     constructor(private schoolsRepository: ISchoolsRepository) {}
     async execute({ name, address }: IRequest) {
-        const schoolsRepository = new SchoolsRepository();
-
-        const school = await schoolsRepository.create({ name, address });
+        const school = await this.schoolsRepository.create({ name, address });
 
         return school;
     }
