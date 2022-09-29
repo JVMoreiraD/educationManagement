@@ -15,6 +15,6 @@ const listTeachersBySchoolController = new ListTeachersBySchoolController();
 teacherRoutes.post("/", createTeachersController.handle);
 teacherRoutes.delete("/:id", deleteTeacherController.handle);
 teacherRoutes.get("/all", listAllTeachersController.handle);
-teacherRoutes.get("/:school_id", listTeachersBySchoolController.handle);
+teacherRoutes.get("/", listTeachersBySchoolController.handle);
 
 export { teacherRoutes };
