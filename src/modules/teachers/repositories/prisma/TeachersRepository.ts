@@ -5,6 +5,10 @@ import { prisma } from "@shared/infra/database/prismaClient";
 import { ITeachersRepository } from "../ITeachersRepository";
 
 class TeachersRepository implements ITeachersRepository {
+    async findTeacherById(id: string): Promise<Teachers> {
+        const teacher = await prisma.teachers.findUnique({ where: { id } });
+        return teacher;
+    }
     async create({
         id,
         name,
@@ -22,15 +26,20 @@ class TeachersRepository implements ITeachersRepository {
     async listTeacherBySchool(school_id: string): Promise<Teachers[]> {
         const teachers = await prisma.teachers.findMany({
             where: { school_id },
+            include: { school: true },
         });
         return teachers;
     }
     async listAllTeaches(): Promise<Teachers[]> {
-        const teachers = await prisma.teachers.findMany();
+        const teachers = await prisma.teachers.findMany({
+            include: { school: true },
+        });
         return teachers;
     }
     async deleteTeacher(id: string): Promise<void> {
-        await prisma.teachers.delete({ where: { id } });
+        await prisma.teachers.delete({
+            where: { id },
+        });
     }
 }
 
