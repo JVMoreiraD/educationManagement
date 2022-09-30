@@ -16,25 +16,43 @@ model Schools {
     address  String
     Teachers Teachers[]
     Students Students[]
+    Classes  Classes[]
 
     @@map("schools")
 }
 
 model Teachers {
-    id        String  @id @default(uuid())
+    id        String    @id @default(uuid())
     name      String
-    school    Schools @relation(fields: [school_id], references: [id])
+    school    Schools   @relation(fields: [school_id], references: [id])
     school_id String
+    Classes   Classes[]
 
     @@map("teachers")
 }
 
 model Students {
-    id           String  @id @default(uuid())
+    id           String   @id @default(uuid())
     name         String
     registration String
-    school       Schools @relation(fields: [schools_id], references: [id])
+    school       Schools  @relation(fields: [schools_id], references: [id])
     schools_id   String
+    Classes      Classes? @relation(fields: [classesId], references: [id])
+    classesId    String?
 
     @@map("students")
+}
+
+model Classes {
+    id          String     @id @default(uuid())
+    grade       Int
+    shift       String
+    description String
+    school      Schools    @relation(fields: [school_id], references: [id])
+    school_id   String
+    students    Students[]
+    teacher     Teachers   @relation(fields: [teacher_id], references: [id])
+    teacher_id  String
+
+    @@map("classes")
 }
