@@ -282,6 +282,71 @@
                     }
                 }
             }
+        },
+        "/classes": {
+            "post": {
+                "tags": [
+                    "classes"
+                ],
+                "summary": "Criar uma nova classe",
+                "description": "Cria uma nova classe em uma nova escola",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/postClasses"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postClassesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "classes"
+                ],
+                "summary": "Listagem das turmas de uma escola e seus alunos",
+                "description": "Faz a listagem das turmas e seus alunos de uma determinada escola",
+                "parameters": [
+                    {
+                        "name": "schools_id",
+                        "in": "query",
+                        "description": "id da escola",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/getClassesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "classes"
+                ]
+            }
         }
     },
     "definitions": {
@@ -332,6 +397,39 @@
                 "name": "Mario Aluno",
                 "schools_id": "id de uma escola",
                 "registration": "inserir a matricula"
+            }
+        },
+        "postClasses": {
+            "type": "object",
+            "properties": {
+                "grade": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "shift": {
+                    "type": "string"
+                },
+                "teacher_id": {
+                    "type": "string"
+                },
+                "students_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "example": {
+                "grade": 3,
+                "description": "descrição de turma",
+                "school_id": "id da escola",
+                "shift": "manhã",
+                "students_id": [
+                    "array de id de alunos"
+                ],
+                "teacher_id": "id do professor"
             }
         },
         "responses": {
@@ -444,6 +542,87 @@
                         },
                         "schools_id": {
                             "type": "string"
+                        },
+                        "classesId": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "postClassesResponse": {
+                "type": "object",
+                "properties": {
+                    "id": "string",
+                    "grade": {
+                        "type": "integer"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "shift": {
+                        "type": "string"
+                    },
+                    "teacher_id": {
+                        "type": "string"
+                    },
+                    "students_id": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "id": "id gerado",
+                    "grade": 3,
+                    "description": "descrição de turma",
+                    "school_id": "id da escola",
+                    "shift": "manhã",
+                    "students_id": [
+                        "array de id de alunos"
+                    ],
+                    "teacher_id": "id do professor"
+                }
+            },
+            "getClassesResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "grade": {
+                            "type": "integer"
+                        },
+                        "shift": {
+                            "type": "string"
+                        },
+                        "school_id": {
+                            "type": "string"
+                        },
+                        "teacher_id": {
+                            "type": "string"
+                        },
+                        "students": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "registration": {
+                                    "type": "string"
+                                },
+                                "schools_id": {
+                                    "type": "string"
+                                },
+                                "classesId": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 }
