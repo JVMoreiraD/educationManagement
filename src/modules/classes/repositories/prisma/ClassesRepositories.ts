@@ -37,7 +37,10 @@ class ClassesRepositories implements IClassesRepositories {
         return classes;
     }
     async findClassesBySchool(school_id: string): Promise<Classes[]> {
-        const classes = await prisma.classes.findMany({ where: { school_id } });
+        const classes = await prisma.classes.findMany({
+            where: { school_id },
+            include: { students: true },
+        });
 
         return classes;
     }
