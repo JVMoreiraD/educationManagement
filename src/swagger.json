@@ -368,6 +368,38 @@
                     }
                 }
             }
+        },
+        "/classes/{classes_id}": {
+            "put": {
+                "tags": [
+                    "classes"
+                ],
+                "summary": "Adiciona alunos a uma turma já existente",
+                "description": "Recebe a lista de alunos que devem ser adicionados a uma turma",
+                "parameters": [
+                    {
+                        "name": "classes_id",
+                        "in": "path",
+                        "description": "id da turma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/putClassesAddStudent"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -453,201 +485,27 @@
                 "teacher_id": "id do professor"
             }
         },
-        "responses": {
-            "postSchoolsResponse": {
-                "type": "object",
-                "properties": {
-                    "id": {
+        "putClassesAddStudent": {
+            "type": "object",
+            "properties": {
+                "students_id": {
+                    "type": "array",
+                    "items": {
                         "type": "string"
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    }
+                    "uniqueItems": true
                 }
             },
-            "postStudentsResponse": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "registration": {
-                        "type": "string"
-                    },
-                    "schools_id": {
-                        "type": "string"
-                    }
-                }
-            },
-            "getSchoolsResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "address": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
-            "postTeacherResponse": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "school_id": {
-                        "type": "string"
-                    }
-                }
-            },
-            "getTeachersResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "school_id": {
-                            "type": "string"
-                        },
-                        "school": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "address": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "getStudentsResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "registration": {
-                            "type": "string"
-                        },
-                        "schools_id": {
-                            "type": "string"
-                        },
-                        "classesId": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
-            "postClassesResponse": {
-                "type": "object",
-                "properties": {
-                    "id": "string",
-                    "grade": {
-                        "type": "integer"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "shift": {
-                        "type": "string"
-                    },
-                    "teacher_id": {
-                        "type": "string"
-                    },
-                    "students_id": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "example": {
-                    "id": "id gerado",
-                    "grade": 3,
-                    "description": "descrição de turma",
-                    "school_id": "id da escola",
-                    "shift": "manhã",
-                    "students_id": [
-                        "array de id de alunos"
-                    ],
-                    "teacher_id": "id do professor"
-                }
-            },
-            "getClassesResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "grade": {
-                            "type": "integer"
-                        },
-                        "shift": {
-                            "type": "string"
-                        },
-                        "school_id": {
-                            "type": "string"
-                        },
-                        "teacher_id": {
-                            "type": "string"
-                        },
-                        "students": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "registration": {
-                                    "type": "string"
-                                },
-                                "schools_id": {
-                                    "type": "string"
-                                },
-                                "classesId": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
+            "example": {
+                "students_id": [
+                    "array de id de alunos"
+                ]
             }
+        },
+        "example": {
+            "students_id": [
+                "array de id de alunos"
+            ]
         }
     },
     "components": {
