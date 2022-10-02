@@ -14,6 +14,14 @@ interface IClassesRepositories {
     findClassesBySchool(school_id: string): Promise<Classes[]>;
     deleteClasse(id: string): Promise<void>;
     findClassesById(id: string): Promise<Classes>;
+    updateStudentsInClass(
+        classes_id: string,
+        students_id: string[]
+    ): Promise<Classes>;
+    addStudentsToClass(
+        classes_id: string,
+        students_id: string[]
+    ): Promise<Classes>;
 }
 
 export { IClassesRepositories };
