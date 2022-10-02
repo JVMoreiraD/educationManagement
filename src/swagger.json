@@ -345,7 +345,28 @@
             "delete": {
                 "tags": [
                     "classes"
-                ]
+                ],
+                "summary": "Deleta uma turma",
+                "description": "Ao receber o id de uma turma faz a remoção dela",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id da turma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Turma não existe"
+                    }
+                }
             }
         }
     },
