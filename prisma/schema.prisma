@@ -11,22 +11,26 @@ datasource db {
 }
 
 model Schools {
-    id       String     @id @default(uuid())
-    name     String
-    address  String
-    Teachers Teachers[]
-    Students Students[]
-    Classes  Classes[]
+    id         String     @id @default(uuid())
+    name       String
+    address    String
+    Teachers   Teachers[]
+    Students   Students[]
+    Classes    Classes[]
+    created_at DateTime   @default(now())
+    updated_at DateTime   @default(now()) @updatedAt
 
     @@map("schools")
 }
 
 model Teachers {
-    id        String    @id @default(uuid())
-    name      String
-    school    Schools   @relation(fields: [school_id], references: [id])
-    school_id String
-    Classes   Classes[]
+    id         String    @id @default(uuid())
+    name       String
+    school     Schools   @relation(fields: [school_id], references: [id])
+    school_id  String
+    Classes    Classes[]
+    created_at DateTime  @default(now())
+    updated_at DateTime  @default(now()) @updatedAt
 
     @@map("teachers")
 }
@@ -39,6 +43,8 @@ model Students {
     schools_id   String
     Classes      Classes? @relation(fields: [classesId], references: [id])
     classesId    String?
+    created_at   DateTime @default(now())
+    updated_at   DateTime @default(now()) @updatedAt
 
     @@map("students")
 }
@@ -53,6 +59,8 @@ model Classes {
     students    Students[]
     teacher     Teachers   @relation(fields: [teacher_id], references: [id])
     teacher_id  String
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @default(now()) @updatedAt
 
     @@map("classes")
 }
