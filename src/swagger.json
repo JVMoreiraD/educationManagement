@@ -56,6 +56,34 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "school"
+                ],
+                "summary": "Alterar nome de escolas",
+                "description": "Passar os parâmetros de nome para alterar o registro da escola",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/putChangeSchoolsName"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postSchoolsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/school/{id}": {
@@ -509,6 +537,17 @@
                 "students_id": [
                     "array de id de alunos"
                 ]
+            }
+        },
+        "putChangeSchoolsName": {
+            "type": "object",
+            "properties": {
+                "newName": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "newName": "Teleyos"
             }
         },
         "responses": {

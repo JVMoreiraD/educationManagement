@@ -25,5 +25,14 @@ class SchoolsRepository implements ISchoolsRepository {
     async deleteSchool(id: string): Promise<void> {
         await prisma.schools.delete({ where: { id } });
     }
+    async changeSchoolsName(id: string, newName: string): Promise<Schools> {
+        const schools = await prisma.schools.update({
+            where: { id },
+            data: {
+                name: newName,
+            },
+        });
+        return schools;
+    }
 }
 export { SchoolsRepository };
