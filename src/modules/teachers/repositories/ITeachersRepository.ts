@@ -8,6 +8,7 @@ interface ITeachersRepository {
     listAllTeaches(): Promise<Teachers[]>;
     deleteTeacher(id: string): Promise<void>;
     findTeacherById(id: string): Promise<Teachers>;
+    changeTeachersName(id: string, newName: string): Promise<Teachers>;
 }
 
 export { ITeachersRepository };

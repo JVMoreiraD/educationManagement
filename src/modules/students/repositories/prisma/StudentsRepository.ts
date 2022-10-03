@@ -36,5 +36,12 @@ class StudentsRepository implements IStudentsRepository {
     async deleteStudent(id: string): Promise<void> {
         await prisma.students.delete({ where: { id } });
     }
+    async changeStudentsName(id: string, newName: string): Promise<Students> {
+        const student = await prisma.students.update({
+            where: { id },
+            data: { name: newName },
+        });
+        return student;
+    }
 }
 export { StudentsRepository };

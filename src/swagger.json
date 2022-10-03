@@ -56,6 +56,45 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "school"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id da escola",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Alterar nome de escolas",
+                "description": "Passar os parâmetros de nome para alterar o registro da escola",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/putChangeSchoolsName"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postSchoolsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/school/{id}": {
@@ -139,6 +178,45 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/responses/getTeachersResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "teacher"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id do professor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Alterar nome de um professor",
+                "description": "Faz alteração no cadastro de um professor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/putTeachers"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postTeacherResponse"
                                 }
                             }
                         }
@@ -248,6 +326,45 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#definitions/responses/getStudentsResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "students"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id do aluno",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Atualizar um aluno",
+                "description": "Atualiza o nome de um aluno",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/putStudents"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#definitions/responses/postStudentsResponse"
                                 }
                             }
                         }
@@ -442,6 +559,17 @@
                 "school_id": "id de uma escola"
             }
         },
+        "putTeachers": {
+            "type": "object",
+            "properties": {
+                "newName": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "newName": "Mario Professor"
+            }
+        },
         "postStudents": {
             "type": "object",
             "properties": {
@@ -459,6 +587,17 @@
                 "name": "Mario Aluno",
                 "schools_id": "id de uma escola",
                 "registration": "inserir a matricula"
+            }
+        },
+        "putStudents": {
+            "type": "object",
+            "properties": {
+                "newName": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "newName": "Kaiky Carlos"
             }
         },
         "postClasses": {
@@ -509,6 +648,17 @@
                 "students_id": [
                     "array de id de alunos"
                 ]
+            }
+        },
+        "putChangeSchoolsName": {
+            "type": "object",
+            "properties": {
+                "newName": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "newName": "Teleyos"
             }
         },
         "responses": {

@@ -41,6 +41,13 @@ class TeachersRepository implements ITeachersRepository {
             where: { id },
         });
     }
+    async changeTeachersName(id: string, newName: string): Promise<Teachers> {
+        const teacher = await prisma.teachers.update({
+            where: { id },
+            data: { name: newName },
+        });
+        return teacher;
+    }
 }
 
 export { TeachersRepository };
