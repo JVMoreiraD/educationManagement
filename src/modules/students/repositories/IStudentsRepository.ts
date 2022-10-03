@@ -12,5 +12,6 @@ interface IStudentsRepository {
     listStudentsBySchool(schools_id: string): Promise<Students[]>;
     deleteStudent(id: string): Promise<void>;
     findStudentById(id: string): Promise<Students>;
+    changeStudentsName(id: string, newName: string): Promise<Students>;
 }
 export { IStudentsRepository };
